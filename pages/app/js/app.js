@@ -176,7 +176,7 @@
             (card) => `
             <a class="project-card" href="${card.href}" target="_blank" rel="noreferrer">
               <span class="project-card__icon">${card.icon}</span>
-              <span>
+              <span class="project-card__body">
                 <span class="project-card__name">${escapeHtml(card.name)}</span>
                 <span class="project-card__desc">${escapeHtml(card.desc)}</span>
               </span>
