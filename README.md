@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="pages/app/assets/logo-256.png" alt="Jadecord" width="128" height="128" border-radius="16">
+  <img src="pages/app/assets/logo-256-rounded.png" alt="Jadecord" width="128" height="128">
 </p>
 
 
