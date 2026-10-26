@@ -1,0 +1,528 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Inter, Arial, sans-serif;
+  color: #fff;
+  background:
+    radial-gradient(circle at 75% 15%, rgba(88, 101, 242, .28), transparent 28%),
+    radial-gradient(circle at 15% 35%, rgba(76, 62, 190, .2), transparent 25%),
+    linear-gradient(135deg, #08091e 0%, #11145c 52%, #3438bd 100%);
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.header {
+  width: 100%;
+  height: 88px;
+  padding: 0 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(8, 9, 30, .62);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font-size: 21px;
+  font-weight: 800;
+}
+
+.discord-icon {
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+}
+
+.discord-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.nav {
+  display: flex;
+  gap: 36px;
+  color: rgba(255,255,255,.82);
+  font-size: 15px;
+}
+
+.nav a,
+.footer a {
+  transition: color .2s ease, opacity .2s ease;
+}
+
+.nav a:hover,
+.footer a:hover {
+  color: #fff;
+}
+
+.login-btn,
+.primary-btn,
+.secondary-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  font-weight: 700;
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+.login-btn {
+  background: #fff;
+  color: #15173d;
+  padding: 12px 24px;
+  font-size: 14px;
+}
+
+.login-btn:hover,
+.primary-btn:hover,
+.secondary-btn:hover {
+  transform: translateY(-2px);
+}
+
+.hero {
+  min-height: 730px;
+  display: flex;
+  align-items: center;
+  padding: 50px 5% 90px;
+  overflow: hidden;
+}
+
+.hero-content {
+  width: min(1400px, 100%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: .9fr 1.1fr;
+  align-items: center;
+  gap: 25px;
+}
+
+.eyebrow {
+  color: #aeb5ff;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+}
+
+.hero h1 {
+  margin-top: 18px;
+  font-size: clamp(46px, 5.4vw, 80px);
+  line-height: .98;
+  letter-spacing: -3px;
+}
+
+.hero h1 span {
+  color: #9da5ff;
+}
+
+.hero-copy > p {
+  max-width: 560px;
+  margin-top: 28px;
+  color: rgba(255,255,255,.74);
+  font-size: 18px;
+  line-height: 1.65;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  margin-top: 35px;
+  flex-wrap: wrap;
+}
+
+.primary-btn {
+  padding: 16px 25px;
+  background: #5865f2;
+  box-shadow: 0 12px 35px rgba(88,101,242,.28);
+}
+
+.secondary-btn {
+  padding: 16px 22px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.12);
+}
+
+.secondary-btn span {
+  margin-left: 9px;
+}
+
+.hero-visual {
+  min-height: 520px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-visual img {
+  width: 100%;
+  max-width: 760px;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 30px 55px rgba(0,0,0,.32));
+  border-radius: 22px;
+  mix-blend-mode: screen;
+}
+
+.glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(50px);
+  opacity: .55;
+}
+
+.glow-one {
+  width: 260px;
+  height: 260px;
+  background: #5965f2;
+  right: 10%;
+  top: 18%;
+}
+
+.glow-two {
+  width: 180px;
+  height: 180px;
+  background: #8c4fff;
+  left: 20%;
+  bottom: 5%;
+}
+
+.section {
+  padding: 110px 5%;
+}
+
+.section-heading {
+  max-width: 720px;
+  margin: 0 auto 55px;
+  text-align: center;
+}
+
+.section-heading h2,
+.about h2,
+.cta h2 {
+  margin-top: 14px;
+  font-size: clamp(38px, 4.4vw, 62px);
+  line-height: 1.05;
+  letter-spacing: -2px;
+}
+
+.section-heading p {
+  margin-top: 18px;
+  color: rgba(255,255,255,.68);
+  line-height: 1.6;
+}
+
+.feature-grid {
+  width: min(1200px, 100%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.feature-card {
+  padding: 30px;
+  min-height: 220px;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 22px;
+  background: rgba(9, 11, 45, .42);
+  backdrop-filter: blur(14px);
+  transition: transform .25s ease, border-color .25s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(145,151,255,.38);
+}
+
+.feature-icon {
+  font-size: 30px;
+  margin-bottom: 24px;
+}
+
+.feature-card h3 {
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+
+.feature-card p {
+  color: rgba(255,255,255,.62);
+  line-height: 1.6;
+}
+
+.about-card {
+  width: min(1200px, 100%);
+  margin: auto;
+  padding: 70px;
+  border-radius: 32px;
+  display: grid;
+  grid-template-columns: 1.2fr .8fr;
+  align-items: center;
+  gap: 60px;
+  background: linear-gradient(120deg, rgba(16,19,75,.88), rgba(50,55,170,.58));
+  border: 1px solid rgba(255,255,255,.1);
+  overflow: hidden;
+}
+
+.about p {
+  max-width: 650px;
+  margin: 25px 0 32px;
+  color: rgba(255,255,255,.68);
+  line-height: 1.7;
+}
+
+.about-orb {
+  width: 310px;
+  height: 310px;
+  margin: auto;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle at 35% 30%, #8e98ff, #5865f2 40%, #282b8f 75%);
+  box-shadow: 0 30px 90px rgba(88,101,242,.4);
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: 4px;
+}
+
+.cta {
+  text-align: center;
+}
+
+.cta-inner {
+  width: min(850px, 100%);
+  margin: auto;
+  padding: 80px 30px;
+  border-radius: 34px;
+  background: rgba(9,11,45,.4);
+  border: 1px solid rgba(255,255,255,.08);
+}
+
+.cta p {
+  margin: 22px auto 30px;
+  color: rgba(255,255,255,.68);
+}
+
+.faq-list {
+  width: min(850px, 100%);
+  margin: auto;
+}
+
+details {
+  margin-bottom: 12px;
+  padding: 22px 24px;
+  border-radius: 15px;
+  background: rgba(9,11,45,.45);
+  border: 1px solid rgba(255,255,255,.08);
+}
+
+summary {
+  cursor: pointer;
+  font-weight: 700;
+}
+
+details p {
+  padding-top: 15px;
+  color: rgba(255,255,255,.64);
+  line-height: 1.6;
+}
+
+.footer {
+  padding: 32px 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  border-top: 1px solid rgba(255,255,255,.08);
+  background: rgba(5,6,24,.4);
+  color: rgba(255,255,255,.62);
+}
+
+.footer-brand {
+  color: #fff;
+}
+
+.footer-links {
+  display: flex;
+  gap: 25px;
+  font-size: 14px;
+}
+
+.copyright {
+  font-size: 13px;
+}
+
+@media (max-width: 950px) {
+  .nav {
+    display: none;
+  }
+
+  .hero-content,
+  .about-card {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    padding-top: 40px;
+  }
+
+  .hero-copy {
+    text-align: center;
+  }
+
+  .hero-copy > p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .hero-visual {
+    min-height: 380px;
+  }
+
+  .feature-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .about-card {
+    text-align: center;
+  }
+
+  .about p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .header {
+    height: 72px;
+    padding: 0 20px;
+  }
+
+  .login-btn {
+    padding: 10px 17px;
+  }
+
+  .hero {
+    min-height: auto;
+    padding: 70px 20px;
+  }
+
+  .hero h1 {
+    letter-spacing: -2px;
+  }
+
+  .hero-copy > p {
+    font-size: 16px;
+  }
+
+  .hero-visual {
+    min-height: 250px;
+  }
+
+  .section {
+    padding: 75px 20px;
+  }
+
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-card {
+    padding: 40px 25px;
+  }
+
+  .about-orb {
+    width: 220px;
+    height: 220px;
+    font-size: 20px;
+  }
+
+  .footer {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-links {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+.hero-visual picture {
+  display: block;
+  width: 100%;
+}
+
+.hero-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+@media (max-width: 700px) {
+  .hero-visual {
+    width: 100%;
+    max-width: 420px;
+    margin: 24px auto 0;
+  }
+
+  .hero-image {
+    width: 100%;
+  }
+}
+.jadecord-logo {
+  width: 30px;
+  height: 30px;
+  display: block;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+.jadecord-logo {
+  width: 30px;
+  height: 30px;
+  display: block;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* Jadecord: compact logo */
+.header .jadecord-logo {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+/* Main Jadecord illustration */
+.hero-visual .hero-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 760px;
+  object-fit: contain;
+  position: relative;
+  z-index: 2;
+}
