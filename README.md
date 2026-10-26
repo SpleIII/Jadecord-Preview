@@ -24,7 +24,7 @@
 </p>
 
 <p align="center">
-  <img src="docs/landing.jpg" alt="Главная страница Jadecord" width="100%">
+  <img src="https://raw.githubusercontent.com/SpleIII/Jadecord-Preview/refs/heads/devbuild/docs/landing.jpg" alt="Главная страница Jadecord" width="100%">
 </p>
 
 ---
