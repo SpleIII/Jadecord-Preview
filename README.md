@@ -1,6 +1,9 @@
 <p align="center">
-  <img src="pages/app/assets/logo-256.png" alt="Jadecord" width="128" height="128" style="border-radius: 16px;">
+  <div style="width: 128px; height: 128px; border-radius: 16px; overflow: hidden; display: inline-block;">
+    <img src="pages/app/assets/logo-256.png" alt="Jadecord" width="128" height="128" style="width: 100%; height: 100%; object-fit: cover;">
+  </div>
 </p>
+
 
 
 <h1 align="center">Jadecord</h1>
