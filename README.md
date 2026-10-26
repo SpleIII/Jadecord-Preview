@@ -1,6 +1,7 @@
-<div style="display: flex; justify-content: center; align-items: center; margin: 1em 0;">
-  <img src="pages/app/assets/logo-256.png" alt="Jadecord" style="width: 128px; height: 128px; border-radius: 16px; object-fit: cover;">
-</div>
+<p align="center">
+  <img src="pages/app/assets/logo-256.png" alt="Jadecord" width="128" height="128" border-radius="16">
+</p>
+
 
 
 
