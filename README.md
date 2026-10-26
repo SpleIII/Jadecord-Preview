@@ -86,7 +86,7 @@ JavaScript-файле `js/data.js`. Достаточно открыть стра
 
 > 💡 **Совет:** откройте клиент и нажмите `Escape` — закроются все открытые меню и карточки.
 >
-> 📦 Сайт собирается из ветки `devbuild`: корень `https://spleiii.github.io/Jadecord-Preview/`
+> 📦 Сайт собирается из ветки `main`: корень `https://spleiii.github.io/Jadecord-Preview/`
 > перенаправляет на главную страницу.
 
 ---
@@ -246,6 +246,7 @@ JavaScript-файле `js/data.js`. Достаточно открыть стра
 Jadecord-Preview/
 ├── README.md                  # документация проекта (вы её читаете)
 ├── index.html                 # редирект с корня сайта на pages/main/
+├── .nojekyll                  # отключает Jekyll — сайт публикуется как есть
 ├── docs/                      # скриншоты для README
 └── pages/
     ├── main/                  # 🌐 главная страница (лендинг)
