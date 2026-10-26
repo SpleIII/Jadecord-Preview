@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ru" class="platform-web theme-darker images-dark density-default font-size-16 has-webkit-scrollbar mouse-mode full-motion">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SpleIII — визитка</title>
+<meta name="description" content="Визитка SpleIII в стиле Discord: интерактивный клиент с каналами, участниками и Rich Presence.">
+<meta name="color-scheme" content="dark light">
+<link rel="icon" href="./assets/favicon.png" type="image/png" sizes="64x64">
+<link rel="apple-touch-icon" href="./assets/logo-256.png">
+<script>
+  // Тему применяем до первой отрисовки — чтобы не было вспышки чужого оформления.
+  (() => {
+    try {
+      const saved = localStorage.getItem('compose-client-theme');
+      if (saved === 'theme-dark' || saved === 'theme-darker' || saved === 'theme-light') {
+        document.documentElement.classList.remove('theme-dark', 'theme-darker', 'theme-light');
+        document.documentElement.classList.add(saved);
+      }
+    } catch (error) {
+      /* localStorage может быть недоступен — тогда остаёмся на теме по умолчанию. */
+    }
+  })();
+</script>
+<link rel="stylesheet" href="./css/discord.css">
+</head>
+<body>
+
+<!-- ============ 0. Экран загрузки ============ -->
+<div class="boot" id="boot" role="status" aria-label="Загрузка Jadecord">
+  <div class="boot__bar" aria-hidden="true"><span></span></div>
+
+  <div class="boot__stage">
+    <img class="boot__logo" src="./assets/logo-256.png" alt="" width="88" height="88" decoding="async" aria-hidden="true">
+    <span class="boot__ring" aria-hidden="true"></span>
+  </div>
+
+  <div class="boot__tip">
+    <span class="boot__spinner" aria-hidden="true"></span>
+    <span class="boot__phrase" id="boot-tip">Загрузка…</span>
+  </div>
+</div>
+
+<div class="app">
+
+  <!-- ============ 1. Рельс серверов ============ -->
+  <nav class="guilds" id="guilds" aria-label="Серверы"></nav>
+
+  <!-- ============ 2. Сайдбар каналов ============ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar__head" id="server-head">
+      <span id="server-name">SpleIII Development</span>
+      <span class="sidebar__chevron" aria-hidden="true">▾</span>
+    </div>
+
+    <div class="sidebar__search">
+      <input type="text" id="channel-search" placeholder="Найти канал" autocomplete="off" aria-label="Поиск канала">
+    </div>
+
+    <div class="sidebar__scroller" id="sidebar-body"></div>
+
+    <!-- Rich Presence — панель клиента -->
+    <div id="theme-slot"></div>
+
+    <div class="rpc" id="rpc">
+      <div class="rpc__menu" id="rpc-menu">
+        <div class="rpc__menu-title">Активность</div>
+        <div id="rpc-options"></div>
+      </div>
+
+      <div class="rpc__card" id="rpc-card">
+        <div class="rpc__avatar" id="rpc-avatar">J</div>
+        <div class="rpc__body">
+          <div class="rpc__title" id="rpc-name">JadecordUser</div>
+          <div class="rpc__state" id="rpc-state"></div>
+        </div>
+        <button class="rpc__btn" id="rpc-btn" title="Сменить активность" aria-label="Сменить активность">⚙</button>
+      </div>
+
+      <div class="status-menu" id="status-menu">
+        <div class="rpc__menu-title">Статус</div>
+        <button class="status-option" data-status="online"><span class="status-option__dot status-option__dot--online"></span>В сети</button>
+        <button class="status-option" data-status="idle"><span class="status-option__dot status-option__dot--idle"></span>Неактивен</button>
+        <button class="status-option" data-status="dnd"><span class="status-option__dot status-option__dot--dnd"></span>Не беспокоить</button>
+        <button class="status-option" data-status="invisible"><span class="status-option__dot status-option__dot--invisible"></span>Невидимый</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ============ 3. Чат ============ -->
+  <main class="chat">
+    <header class="chat__header">
+      <span class="chat__icon" id="chat-icon" aria-hidden="true">#</span>
+      <span class="chat__title" id="chat-title">визитка</span>
+      <span class="chat__divider" aria-hidden="true"></span>
+      <span class="chat__topic" id="chat-topic"></span>
+
+      <div class="chat__actions">
+        <button title="Уведомления" aria-label="Уведомления">🔔</button>
+        <button title="Закреплённые сообщения" aria-label="Закреплённые сообщения">📌</button>
+        <button title="Список участников" aria-label="Список участников" id="toggle-members">👤</button>
+        <button title="Тема канала" aria-label="Тема канала">✏️</button>
+      </div>
+    </header>
+
+    <div class="chat__messages" id="messages"></div>
+
+    <div class="composer">
+      <div class="composer__box">
+        <button class="composer__btn" title="Добавить вложение" aria-label="Добавить вложение">＋</button>
+        <textarea class="composer__input" id="composer" rows="1" placeholder="Написать сообщение в #визитка"></textarea>
+        <button class="composer__btn" title="Гифки" aria-label="Гифки">GIF</button>
+        <button class="composer__btn" title="Стикеры" aria-label="Стикеры">🩹</button>
+        <button class="composer__btn" title="Эмодзи" aria-label="Эмодзи">😀</button>
+        <button class="composer__btn composer__send" id="send" title="Отправить" aria-label="Отправить">➤</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- ============ 4. Участники ============ -->
+  <aside class="members" id="members"></aside>
+
+</div>
+
+<!-- Всплывающие окна -->
+<div class="popout" id="popout">
+  <div class="popout__banner"></div>
+  <div class="popout__body">
+    <div class="popout__avatar" id="popout-avatar">S</div>
+    <div class="popout__name" id="popout-name"></div>
+    <div class="popout__meta" id="popout-meta"></div>
+    <div class="popout__section">
+      <div class="popout__section-title">О себе</div>
+      <div class="popout__section-text" id="popout-about"></div>
+    </div>
+    <div class="popout__section">
+      <div class="popout__section-title">Ссылки</div>
+      <div id="popout-links"></div>
+    </div>
+  </div>
+</div>
+
+<div class="server-menu" id="server-menu"></div>
+
+<script src="./js/data.js"></script>
+<script src="./js/app.js"></script>
+</body>
+</html>

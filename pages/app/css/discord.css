@@ -1,0 +1,1645 @@
+/* =========================================================
+   Discord 1:1 — токены сняты с реального discord.com/app
+   через инспектор стилей (темы theme-dark / theme-darker /
+   theme-light, палитра neutral-*, blurple, размеры сетки).
+   ========================================================= */
+
+/* ---------- палитра neutral (реальные значения Discord) ---------- */
+
+:root {
+  --font-primary: "gg sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-code: "gg mono", "Source Code Pro", Consolas, "Andale Mono WT", "Liberation Mono", monospace;
+
+  --radius-none: 0px;
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-xxl: 32px;
+  --radius-round: 2147483647px;
+
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 20px;
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --elevation-low: 0 1px 0 rgba(0, 0, 0, 0.2), 0 1.5px 0 rgba(0, 0, 0, 0.04), 0 2px 0 rgba(0, 0, 0, 0.04);
+  --elevation-medium: 0 4px 4px rgba(0, 0, 0, 0.16);
+  --elevation-high: 0 8px 16px rgba(0, 0, 0, 0.24);
+
+  /* сетка — размеры из discord.com */
+  --guild-list-width: 72px;
+  --guild-avatar-size: 40px;
+  --channel-sidebar-width: 280px;
+  --member-list-width: 240px;
+  --channel-header-height: 49px;
+
+  --brand: hsl(234.935 85.556% 64.706%);
+  --brand-hover: hsl(234.935 85.556% 70%);
+  --green: rgb(61, 158, 96);
+  --yellow: hsl(45 100% 56%);
+  --red: hsl(359 79% 67%);
+  --grey: rgb(128, 132, 141);
+}
+
+/* ---------- тёмная тема ---------- */
+
+.theme-dark {
+  --background-base-low: var(--neutral-66);
+  --background-base-lower: var(--neutral-69);
+  --background-base-lowest: var(--neutral-73);
+  --background-tertiary: var(--neutral-69);
+  --background-secondary: var(--neutral-73);
+  --background-primary: var(--neutral-73);
+
+  --text-normal: #dcddde;
+  --text-strong: #f2f3f5;
+  --text-muted: var(--neutral-23);
+  --text-link: hsl(213.281 87.671% 71.373%);
+  --text-brand: hsl(228.785 100% 79.02%);
+  --text-positive: var(--green);
+  --text-negative: var(--red);
+  --text-warning: var(--yellow);
+  --text-on-brand: hsl(0 0% 100%);
+
+  --interactive-normal: var(--neutral-30);
+  --interactive-hover: var(--neutral-20);
+  --interactive-active: var(--neutral-7);
+  --interactive-muted: var(--neutral-50);
+
+  --border-normal: rgba(0, 0, 0, 0.2);
+  --border-subtle: rgba(0, 0, 0, 0.12);
+  --border-strong: rgba(0, 0, 0, 0.44);
+
+  --background-mod-normal: rgba(151, 151, 159, 0.16);
+  --background-mod-subtle: rgba(151, 151, 159, 0.12);
+  --background-mod-muted: rgba(151, 151, 159, 0.08);
+  --background-mod-hover: rgba(151, 151, 159, 0.16);
+  --background-mod-selected: rgba(151, 151, 159, 0.16);
+  --background-mod-strong: rgba(151, 151, 159, 0.24);
+  --background-accent: var(--brand);
+
+  --surface-high: var(--neutral-64);
+  --surface-higher: var(--neutral-62);
+  --surface-highest: var(--neutral-60);
+
+  --scrollbar-thumb: rgba(0, 0, 0, 0.3);
+  --scrollbar-track: transparent;
+  --shadow-border: 0 0 0 1px rgba(0, 0, 0, 0.2);
+}
+
+/* ---------- самая тёмная тема (theme-darker) ---------- */
+
+.theme-darker {
+  --background-base-low: var(--neutral-82);
+  --background-base-lower: var(--neutral-86);
+  --background-base-lowest: var(--neutral-92);
+  --background-tertiary: var(--neutral-86);
+  --background-secondary: var(--neutral-92);
+  --background-primary: var(--neutral-92);
+
+  --text-normal: #dcddde;
+  --text-strong: #f2f3f5;
+  --text-muted: var(--neutral-29);
+  --text-link: hsl(212.795 82.564% 61.765%);
+  --text-brand: hsl(230.625 91.429% 72.549%);
+  --text-on-brand: hsl(0 0% 100%);
+
+  --interactive-normal: var(--neutral-31);
+  --interactive-hover: var(--neutral-21);
+  --interactive-active: var(--neutral-8);
+  --interactive-muted: var(--primary-500);
+
+  --border-normal: rgba(0, 0, 0, 0.2);
+  --border-subtle: rgba(0, 0, 0, 0.12);
+  --border-strong: rgba(0, 0, 0, 0.44);
+
+  --background-mod-normal: rgba(151, 151, 159, 0.16);
+  --background-mod-subtle: rgba(151, 151, 159, 0.12);
+  --background-mod-muted: rgba(151, 151, 159, 0.08);
+  --background-mod-hover: rgba(151, 151, 159, 0.16);
+  --background-mod-selected: rgba(151, 151, 159, 0.16);
+  --background-mod-strong: rgba(151, 151, 159, 0.24);
+  --background-accent: var(--brand);
+
+  --surface-high: var(--neutral-82);
+  --surface-higher: var(--neutral-82);
+  --surface-highest: var(--neutral-80);
+
+  --scrollbar-thumb: rgba(0, 0, 0, 0.4);
+  --scrollbar-track: transparent;
+  --shadow-border: 0 0 0 1px rgba(0, 0, 0, 0.3);
+}
+
+/* ---------- светлая тема ---------- */
+
+.theme-light {
+  --background-base-low: var(--neutral-2);
+  --background-base-lower: var(--neutral-2);
+  --background-base-lowest: var(--neutral-4);
+  --background-tertiary: var(--neutral-7);
+  --background-secondary: var(--neutral-4);
+  --background-primary: var(--neutral-4);
+
+  --text-normal: #2e3338;
+  --text-strong: #060607;
+  --text-muted: #5c5e66;
+  --text-link: hsl(212 100% 48%);
+  --text-brand: hsl(228.641 69.553% 54.902%);
+  --text-positive: hsl(141 73% 35%);
+  --text-negative: hsl(359 79% 52%);
+  --text-warning: hsl(35 92% 40%);
+  --text-on-brand: hsl(0 0% 100%);
+
+  --interactive-normal: var(--neutral-54);
+  --interactive-hover: var(--neutral-44);
+  --interactive-active: var(--neutral-21);
+  --interactive-muted: var(--neutral-43);
+
+  --border-normal: rgba(0, 0, 0, 0.4);
+  --border-subtle: rgba(0, 0, 0, 0.28);
+  --border-strong: rgba(0, 0, 0, 0.52);
+
+  --background-mod-normal: rgba(6, 6, 7, 0.08);
+  --background-mod-subtle: rgba(6, 6, 7, 0.06);
+  --background-mod-muted: rgba(6, 6, 7, 0.04);
+  --background-mod-hover: rgba(6, 6, 7, 0.08);
+  --background-mod-selected: rgba(6, 6, 7, 0.08);
+  --background-mod-strong: rgba(6, 6, 7, 0.12);
+  --background-accent: var(--brand);
+
+  --surface-high: var(--neutral-2);
+  --surface-higher: var(--neutral-3);
+  --surface-highest: var(--neutral-4);
+
+  --scrollbar-thumb: rgba(0, 0, 0, 0.3);
+  --scrollbar-track: transparent;
+  --shadow-border: 0 0 0 1px rgba(0, 0, 0, 0.15);
+}
+
+/* ---------- палитра neutral ---------- */
+
+.theme-dark, .theme-darker, .theme-light {
+  --neutral-1: rgb(255, 255, 255);
+  --neutral-2: rgb(251, 251, 251);
+  --neutral-3: rgb(247, 247, 248);
+  --neutral-4: rgb(243, 243, 244);
+  --neutral-5: rgb(239, 239, 241);
+  --neutral-6: rgb(235, 236, 237);
+  --neutral-7: rgb(232, 232, 234);
+  --neutral-8: rgb(228, 228, 230);
+  --neutral-9: rgb(224, 224, 227);
+  --neutral-10: rgb(220, 220, 223);
+  --neutral-12: rgb(212, 213, 216);
+  --neutral-16: rgb(197, 198, 202);
+  --neutral-20: rgb(182, 183, 188);
+  --neutral-23: rgb(171, 172, 178);
+  --neutral-27: rgb(157, 158, 165);
+  --neutral-29: rgb(150, 151, 158);
+  --neutral-30: rgb(146, 147, 155);
+  --neutral-31: rgb(143, 144, 151);
+  --neutral-41: rgb(108, 109, 118);
+  --neutral-43: rgb(102, 103, 112);
+  --neutral-44: rgb(98, 99, 109);
+  --neutral-50: rgb(79, 80, 90);
+  --neutral-54: rgb(73, 74, 83);
+  --neutral-60: rgb(63, 64, 72);
+  --neutral-62: rgb(60, 61, 69);
+  --neutral-64: rgb(57, 58, 65);
+  --neutral-66: rgb(54, 55, 62);
+  --neutral-69: rgb(50, 51, 57);
+  --neutral-73: rgb(44, 45, 50);
+  --neutral-80: rgb(34, 35, 39);
+  --neutral-82: rgb(32, 32, 36);
+  --neutral-86: rgb(26, 26, 30);
+  --neutral-92: rgb(18, 18, 20);
+  --primary-500: hsl(234.545 6.509% 33.137%);
+}
+
+/* =========================================================
+   Сброс и каркас
+   ========================================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font-primary);
+  font-size: 16px;
+  line-height: 1.375;
+  color: var(--text-normal);
+  background: var(--background-base-lowest);
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+input,
+textarea {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  outline: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.app {
+  display: flex;
+  height: 100vh;
+  background: var(--background-base-lowest);
+}
+
+/* =========================================================
+   0. Экран загрузки — как при запуске настоящего клиента
+   ========================================================= */
+
+.boot {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--background-base-lowest);
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.boot.is-done {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Тонкая полоса прогресса по верхней кромке. */
+.boot__bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  overflow: hidden;
+  background: var(--background-mod-subtle);
+}
+
+.boot__bar span {
+  display: block;
+  width: 40%;
+  height: 100%;
+  border-radius: 3px;
+  background: var(--brand);
+  animation: boot-bar 1.4s ease-in-out infinite;
+}
+
+.boot__stage {
+  position: relative;
+  width: 132px;
+  height: 132px;
+  display: grid;
+  place-items: center;
+}
+
+.boot__logo {
+  width: 88px;
+  height: 88px;
+  border-radius: 22px;
+  animation: boot-pulse 2s ease-in-out infinite;
+  box-shadow: 0 0 56px rgba(140, 220, 40, 0.38), 0 12px 28px rgba(0, 0, 0, 0.5);
+}
+
+.boot__ring {
+  position: absolute;
+  inset: 0;
+  border: 2px solid transparent;
+  border-top-color: var(--brand);
+  border-radius: 50%;
+  opacity: 0.5;
+  animation: boot-spin 1.6s linear infinite;
+}
+
+/* Подсказка внизу — фразы меняются, как «Did you know» в Discord. */
+.boot__tip {
+  position: absolute;
+  left: 50%;
+  bottom: 40px;
+  width: max-content;
+  max-width: min(640px, calc(100% - 48px));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: 0 var(--space-md);
+  transform: translateX(-50%);
+  color: var(--text-muted);
+  font-size: 14px;
+  text-align: center;
+}
+
+.boot__phrase {
+  transition: opacity 0.22s ease;
+}
+
+.boot__phrase.is-fading {
+  opacity: 0;
+}
+
+.boot__spinner {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  border: 2px solid var(--background-mod-strong);
+  border-top-color: var(--text-muted);
+  border-radius: 50%;
+  animation: boot-spin 0.9s linear infinite;
+}
+
+@keyframes boot-pulse {
+  0%,
+  100% {
+    transform: scale(0.94);
+    opacity: 0.85;
+  }
+
+  50% {
+    transform: scale(1.04);
+    opacity: 1;
+  }
+}
+
+@keyframes boot-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes boot-bar {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(250%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .boot__logo,
+  .boot__ring,
+  .boot__spinner,
+  .boot__bar span {
+    animation: none;
+  }
+}
+
+/* =========================================================
+   1. Рельс серверов — 72px
+   ========================================================= */
+
+.guilds {
+  width: var(--guild-list-width);
+  min-width: var(--guild-list-width);
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-xs) 0;
+  background: var(--background-base-lowest);
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.guilds::-webkit-scrollbar {
+  display: none;
+}
+
+.guild {
+  position: relative;
+  width: var(--guild-avatar-size);
+  height: var(--guild-avatar-size);
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-lg);
+  color: var(--text-muted);
+  font-weight: var(--font-weight-semibold);
+  font-size: 15px;
+  text-transform: uppercase;
+  transition: border-radius 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+}
+
+/* Пунктирный индикатор «сервер прочитан» — как в Discord. */
+.guild::before {
+  content: "";
+  position: absolute;
+  left: -12px;
+  width: 4px;
+  height: 8px;
+  border-radius: 0 4px 4px 0;
+  background: var(--text-normal);
+  opacity: 0;
+  transition: height 0.15s ease, opacity 0.15s ease;
+}
+
+.guild:hover {
+  border-radius: var(--radius-sm);
+  color: var(--text-normal);
+  background: var(--background-mod-strong);
+}
+
+.guild.is-active {
+  border-radius: var(--radius-sm);
+  color: var(--text-normal);
+  background: var(--brand);
+}
+
+.guild.is-active::before {
+  opacity: 1;
+  height: 20px;
+}
+
+.guild--home {
+  color: var(--text-normal);
+  background: var(--background-secondary);
+}
+
+.guild--home:hover {
+  background: var(--brand);
+}
+
+.guild--divider {
+  width: 32px;
+  height: 2px;
+  margin: var(--space-xs) 0;
+  border-radius: 1px;
+  background: var(--background-mod-strong);
+  font-size: 0;
+}
+
+.guild--divider:hover {
+  background: var(--background-mod-strong);
+}
+
+/* Кружок «нового сервера». */
+.guild--add {
+  color: var(--green);
+  background: var(--background-secondary);
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.guild--add:hover {
+  color: var(--text-normal);
+  background: var(--green);
+}
+
+/* =========================================================
+   2. Сайдбар каналов — 280px
+   ========================================================= */
+
+.sidebar {
+  width: var(--channel-sidebar-width);
+  min-width: var(--channel-sidebar-width);
+  display: flex;
+  flex-direction: column;
+  background: var(--background-base-lowest);
+}
+
+.sidebar__head {
+  height: var(--channel-header-height);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: 0 var(--space-md);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 1.5px 0 rgba(0, 0, 0, 0.04), 0 2px 0 rgba(0, 0, 0, 0.04);
+  color: var(--text-strong);
+  font-weight: var(--font-weight-semibold);
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.sidebar__head:hover {
+  background: var(--background-mod-muted);
+}
+
+.sidebar__chevron {
+  margin-left: auto;
+  color: var(--interactive-muted);
+}
+
+.sidebar__search {
+  flex-shrink: 0;
+  padding: var(--space-xs) var(--space-md);
+}
+
+.sidebar__search input {
+  width: 100%;
+  height: 28px;
+  padding: 0 10px;
+  border-radius: var(--radius-xs);
+  background: var(--background-base-low);
+  color: var(--text-normal);
+  font-size: 14px;
+}
+
+.sidebar__search input::placeholder {
+  color: var(--text-muted);
+}
+
+.sidebar__scroller {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 0 var(--space-sm) var(--space-sm);
+  background: var(--background-base-lower);
+}
+
+.sidebar__section {
+  margin-top: var(--space-lg);
+}
+
+.sidebar__section-title {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 0 4px;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+}
+
+.sidebar__section-title:hover {
+  color: var(--text-normal);
+}
+
+.channel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  width: 100%;
+  margin-top: 2px;
+  padding: 6px 8px;
+  border-radius: var(--radius-xs);
+  color: var(--text-muted);
+  font-size: 16px;
+  font-weight: var(--font-weight-medium);
+  text-align: left;
+}
+
+.channel:hover {
+  background: var(--background-mod-hover);
+  color: var(--text-normal);
+}
+
+.channel.is-active {
+  background: var(--background-mod-selected);
+  color: var(--text-normal);
+}
+.channel__hash {
+  flex-shrink: 0;
+  font-size: 20px;
+  line-height: 1;
+  opacity: 0.6;
+}
+
+.channel__name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.channel__badge {
+  margin-left: auto;
+  flex-shrink: 0;
+  padding: 0 4px;
+  border-radius: var(--radius-xs);
+  background: var(--red);
+  color: var(--text-on-brand);
+  font-size: 12px;
+  font-weight: var(--font-weight-semibold);
+}
+
+.channel__voice {
+  margin-left: auto;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+/* Участники голосового канала внутри сайдбара. */
+.voice-members {
+  padding: 2px 0 2px 32px;
+}
+
+.voice-member {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: 4px 0;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+/* =========================================================
+   3. Область чата
+   ========================================================= */
+
+.chat {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--background-base-lower);
+}
+
+.chat__header {
+  height: var(--channel-header-height);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: 0 var(--space-md);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 1.5px 0 rgba(0, 0, 0, 0.04), 0 2px 0 rgba(0, 0, 0, 0.04);
+}
+
+.chat__icon {
+  color: var(--text-muted);
+  font-size: 24px;
+  line-height: 1;
+}
+
+.chat__title {
+  font-size: 16px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-strong);
+}
+
+.chat__divider {
+  width: 1px;
+  height: 24px;
+  background: var(--border-normal);
+}
+
+.chat__topic {
+  color: var(--text-muted);
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.chat__actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  color: var(--interactive-muted);
+  font-size: 18px;
+}
+
+.chat__actions button:hover {
+  color: var(--text-normal);
+}
+
+.chat__messages {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding-bottom: var(--space-lg);
+}
+
+.chat__divider-date {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin: var(--space-lg) var(--space-md) var(--space-sm);
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: var(--font-weight-semibold);
+}
+
+.chat__divider-date::before,
+.chat__divider-date::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border-subtle);
+}
+
+.message {
+  position: relative;
+  display: flex;
+  gap: var(--space-md);
+  padding: 2px var(--space-md) 2px var(--space-lg);
+  margin-top: 0;
+}
+
+.message:hover {
+  background: var(--background-mod-muted);
+}
+
+.message--first {
+  margin-top: var(--space-md);
+}
+
+.message__avatar {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 15px;
+  font-weight: var(--font-weight-medium);
+  color: var(--text-on-brand);
+  overflow: hidden;
+}
+
+.message__body {
+  min-width: 0;
+  flex: 1;
+}
+
+.message__head {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-xs);
+}
+
+.message__author {
+  font-size: 16px;
+  font-weight: var(--font-weight-medium);
+  color: var(--text-strong);
+  cursor: pointer;
+}
+
+.message__author:hover {
+  text-decoration: underline;
+}
+
+.message__badge {
+  padding: 0 4px;
+  border-radius: var(--radius-xs);
+  background: var(--brand);
+  color: var(--text-on-brand);
+  font-size: 10px;
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  position: relative;
+  top: -1px;
+}
+
+.message__badge--bot {
+  background: var(--background-brand);
+}
+
+.message__time {
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.message__text {
+  font-size: 16px;
+  line-height: 1.375;
+  color: var(--text-normal);
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.message__text .mention {
+  padding: 0 2px;
+  border-radius: 3px;
+  background: var(--background-mod-normal);
+  color: var(--text-brand);
+  font-weight: var(--font-weight-medium);
+}
+
+.message__text .link {
+  color: var(--text-link);
+  text-decoration: none;
+}
+
+.message__text .link:hover {
+  text-decoration: underline;
+}
+
+.message__text .code {
+  padding: 1px 4px;
+  border-radius: var(--radius-xs);
+  background: var(--background-mod-strong);
+  font-family: var(--font-code);
+  font-size: 85%;
+}
+
+.message__text .pre {
+  display: block;
+  margin: var(--space-xs) 0;
+  padding: var(--space-sm);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  background: var(--background-mod-muted);
+  font-family: var(--font-code);
+  font-size: 13px;
+  white-space: pre-wrap;
+}
+
+.message__reactions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-top: var(--space-xs);
+}
+
+.reaction {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 6px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-xs);
+  background: var(--background-mod-normal);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.reaction:hover {
+  border-color: var(--border-normal);
+}
+
+.reaction.is-mine {
+  background: var(--background-mod-strong);
+  border-color: var(--brand);
+}
+
+.reaction__count {
+  font-size: 13px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-muted);
+}
+
+.message__actions {
+  position: absolute;
+  top: -16px;
+  right: var(--space-md);
+  display: none;
+  align-items: center;
+  gap: 2px;
+  padding: 2px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  background: var(--surface-high);
+  box-shadow: var(--elevation-medium);
+}
+
+.message:hover .message__actions {
+  display: flex;
+}
+
+.message__actions button {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-xs);
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.message__actions button:hover {
+  background: var(--background-mod-hover);
+  color: var(--text-normal);
+}
+
+/* Карточка проекта внутри сообщения. */
+.project-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  max-width: 430px;
+  margin-top: var(--space-xs);
+  padding: var(--space-sm);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--background-mod-muted);
+  transition: border-color 0.15s ease;
+}
+
+.project-card:hover {
+  border-color: var(--brand);
+}
+
+.project-card__icon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-sm);
+  background: var(--background-mod-strong);
+  font-size: 20px;
+}
+
+.project-card__name {
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-link);
+}
+
+.project-card__desc {
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+/* =========================================================
+   4. Панель ввода
+   ========================================================= */
+
+.composer {
+  flex-shrink: 0;
+  padding: 0 var(--space-md) var(--space-md);
+}
+
+.composer__box {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-sm);
+  padding: 0 var(--space-sm);
+  border-radius: var(--radius-md);
+  background: var(--background-mod-muted);
+}
+
+.composer__input {
+  flex: 1;
+  min-height: 44px;
+  max-height: 300px;
+  padding: 11px 0;
+  color: var(--text-normal);
+  font-size: 16px;
+  line-height: 1.375;
+  resize: none;
+  overflow-y: auto;
+}
+
+.composer__input::placeholder {
+  color: var(--text-muted);
+}
+
+.composer__btn {
+  height: 44px;
+  display: grid;
+  place-items: center;
+  color: var(--text-muted);
+  font-size: 20px;
+}
+
+.composer__btn:hover {
+  color: var(--text-normal);
+}
+
+.composer__send {
+  color: var(--text-muted);
+}
+
+.composer__send.is-ready {
+  color: var(--text-normal);
+}
+
+/* =========================================================
+   5. Список участников — 240px
+   ========================================================= */
+
+.members {
+  width: var(--member-list-width);
+  min-width: var(--member-list-width);
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--background-base-lowest);
+  overflow-y: auto;
+}
+
+.members.is-hidden {
+  display: none;
+}
+
+.members__section {
+  padding: var(--space-sm) 0 var(--space-xs);
+}
+
+.members__title {
+  padding: var(--space-xs) var(--space-md);
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+}
+
+.member {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  width: 100%;
+  padding: 6px var(--space-md);
+  margin: 1px 0;
+  border-radius: var(--radius-xs);
+  color: var(--text-normal);
+  font-size: 16px;
+  font-weight: var(--font-weight-medium);
+  text-align: left;
+  cursor: pointer;
+}
+
+.member:hover {
+  background: var(--background-mod-hover);
+  color: var(--text-strong);
+}
+
+.member.is-offline {
+  color: var(--text-muted);
+}
+
+.member__avatar {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-size: 13px;
+  font-weight: var(--font-weight-medium);
+  color: var(--text-on-brand);
+}
+
+.member__status {
+  position: absolute;
+  right: -2px;
+  bottom: -2px;
+  width: 16px;
+  height: 16px;
+  border: 3px solid var(--background-base-lowest);
+  border-radius: 50%;
+  background: var(--grey);
+}
+
+.member__status--online {
+  background: var(--green);
+}
+
+.member__status--idle {
+  background: var(--yellow);
+}
+
+.member__status--dnd {
+  background: var(--red);
+}
+
+.member__name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.member__tag {
+  padding: 0 4px;
+  border-radius: var(--radius-xs);
+  background: var(--brand);
+  color: var(--text-on-brand);
+  font-size: 10px;
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   6. RPC-панель Rich Presence — «часть клиента»
+   ========================================================= */
+
+.rpc {
+  position: relative;
+  flex-shrink: 0;
+  margin-top: auto;
+  padding: 0 var(--space-sm) var(--space-sm);
+}
+
+.rpc__card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm);
+  border-radius: var(--radius-sm);
+  background: var(--background-mod-muted);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.rpc__card:hover {
+  background: var(--background-mod-strong);
+}
+
+.rpc__avatar {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--brand);
+  color: var(--text-on-brand);
+  font-size: 15px;
+  font-weight: var(--font-weight-semibold);
+}
+
+.rpc__body {
+  min-width: 0;
+}
+
+.rpc__title {
+  font-size: 14px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-strong);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rpc__state {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.rpc__state strong {
+  color: var(--text-normal);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Кружок статуса перед подписью в панели клиента. */
+.rpc__dot {
+  width: 10px;
+  height: 10px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--grey);
+}
+
+.rpc__dot--online {
+  background: var(--green);
+}
+
+.rpc__dot--idle {
+  background: var(--yellow);
+}
+
+.rpc__dot--dnd {
+  background: var(--red);
+}
+
+.rpc__dot--invisible {
+  background: transparent;
+  box-shadow: inset 0 0 0 2px var(--grey);
+}
+
+.rpc__text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rpc__btn {
+  position: absolute;
+  right: var(--space-xs);
+  top: var(--space-xs);
+  width: 22px;
+  height: 22px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-xs);
+  color: var(--text-muted);
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.rpc__card:hover .rpc__btn {
+  opacity: 1;
+}
+
+.rpc__btn:hover {
+  background: var(--background-mod-hover);
+  color: var(--text-normal);
+}
+
+/* Выпадающее меню активностей. */
+.rpc__menu {
+  position: absolute;
+  left: var(--space-sm);
+  right: var(--space-sm);
+  bottom: calc(100% + 4px);
+  z-index: 30;
+  display: none;
+  max-height: min(60vh, 420px);
+  overflow-y: auto;
+  padding: var(--space-xs);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--surface-higher);
+  box-shadow: var(--elevation-high);
+}
+
+.rpc__menu.is-open {
+  display: block;
+}
+
+.rpc__menu-title {
+  padding: var(--space-xs) var(--space-sm);
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+}
+
+.rpc__option {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  width: 100%;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-xs);
+  color: var(--text-normal);
+  font-size: 14px;
+  text-align: left;
+}
+
+.rpc__option:hover {
+  background: var(--background-mod-hover);
+}
+
+.rpc__option.is-active {
+  color: var(--text-brand);
+}
+
+.rpc__option-icon {
+  width: 24px;
+  text-align: center;
+}
+
+.rpc__option small {
+  display: block;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+/* =========================================================
+   7. Меню статуса
+   ========================================================= */
+
+.status-menu {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: var(--space-sm);
+  right: var(--space-sm);
+  z-index: 40;
+  display: none;
+  max-height: min(60vh, 420px);
+  overflow-y: auto;
+  padding: var(--space-xs);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--surface-higher);
+  box-shadow: var(--elevation-high);
+}
+
+.status-menu.is-open {
+  display: block;
+}
+
+.status-option {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  width: 100%;
+  padding: 6px var(--space-sm);
+  border-radius: var(--radius-xs);
+  font-size: 14px;
+  text-align: left;
+}
+
+.status-option:hover {
+  background: var(--background-mod-hover);
+}
+
+.status-option__dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--grey);
+}
+
+.status-option__dot--online {
+  background: var(--green);
+}
+
+.status-option__dot--idle {
+  background: var(--yellow);
+}
+
+.status-option__dot--dnd {
+  background: var(--red);
+}
+
+.status-option__dot--invisible {
+  background: transparent;
+  border: 2px solid var(--grey);
+}
+
+/* =========================================================
+   8. Тултип участника
+   ========================================================= */
+
+.popout {
+  position: fixed;
+  z-index: 60;
+  display: none;
+  width: 300px;
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--surface-highest);
+  box-shadow: var(--elevation-high);
+}
+
+.popout.is-open {
+  display: block;
+}
+
+.popout__banner {
+  height: 60px;
+  background: var(--background-mod-strong);
+}
+
+.popout__body {
+  padding: 0 var(--space-md) var(--space-md);
+}
+
+.popout__avatar {
+  width: 60px;
+  height: 60px;
+  margin-top: -30px;
+  display: grid;
+  place-items: center;
+  border: 6px solid var(--surface-highest);
+  border-radius: 50%;
+  background: var(--brand);
+  color: var(--text-on-brand);
+  font-size: 22px;
+  font-weight: var(--font-weight-semibold);
+}
+
+.popout__name {
+  margin-top: var(--space-xs);
+  font-size: 20px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-strong);
+}
+
+.popout__tag {
+  display: inline-block;
+  margin-left: var(--space-xs);
+  padding: 0 6px;
+  border-radius: var(--radius-xs);
+  background: var(--brand);
+  color: var(--text-on-brand);
+  font-size: 11px;
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+
+.popout__meta {
+  margin-top: 2px;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.popout__section {
+  margin-top: var(--space-md);
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.popout__section-title {
+  font-size: 12px;
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  color: var(--text-normal);
+}
+
+.popout__section-text {
+  margin-top: var(--space-xs);
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.popout__link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  margin-top: var(--space-xs);
+  color: var(--text-link);
+  font-size: 14px;
+}
+
+.popout__link:hover {
+  text-decoration: underline;
+}
+
+/* =========================================================
+   9. Меню сервера (по клику на иконку)
+   ========================================================= */
+
+.server-menu {
+  position: fixed;
+  z-index: 60;
+  display: none;
+  width: 240px;
+  padding: var(--space-xs);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--surface-higher);
+  box-shadow: var(--elevation-high);
+}
+
+.server-menu.is-open {
+  display: block;
+}
+
+.server-menu__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  width: 100%;
+  padding: 6px var(--space-sm);
+  border-radius: var(--radius-xs);
+  color: var(--text-normal);
+  font-size: 14px;
+  font-weight: var(--font-weight-medium);
+  text-align: left;
+}
+
+.server-menu__item:hover {
+  background: var(--background-mod-hover);
+}
+
+.server-menu__item--danger {
+  color: var(--text-negative);
+}
+
+.server-menu__sep {
+  height: 1px;
+  margin: var(--space-xs) 0;
+  background: var(--border-subtle);
+}
+
+/* =========================================================
+   10. Переключатель темы
+   ========================================================= */
+
+.theme-switch {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  width: 100%;
+  margin-bottom: var(--space-xs);
+  padding: 6px var(--space-sm);
+  border-radius: var(--radius-xs);
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: var(--font-weight-medium);
+}
+
+.theme-switch:hover {
+  background: var(--background-mod-hover);
+  color: var(--text-normal);
+}
+
+.theme-switch__dots {
+  display: flex;
+  gap: 3px;
+}
+
+.theme-switch__dot {
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--border-strong);
+  border-radius: 50%;
+}
+
+.theme-switch__dot.is-active {
+  border-color: var(--brand);
+}
+
+/* =========================================================
+   11. Полосы прокрутки
+   ========================================================= */
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background: var(--scrollbar-thumb);
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+/* =========================================================
+   12. Адаптив
+   ========================================================= */
+
+@media (max-width: 1024px) {
+  .members {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 220px;
+    min-width: 220px;
+  }
+}
+
+@media (max-width: 560px) {
+  .guilds {
+    width: 56px;
+    min-width: 56px;
+  }
+
+  .sidebar {
+    position: absolute;
+    z-index: 20;
+    height: 100%;
+    transform: translateX(-100%);
+    transition: transform 0.2s ease;
+  }
+
+  .sidebar.is-open {
+    transform: none;
+  }
+
+  .guild {
+    width: 40px;
+    height: 40px;
+  }
+}
