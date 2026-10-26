@@ -1,6 +1,7 @@
 <p align="center">
-  <img src="pages/app/assets/logo-256.png" alt="Jadecord" width="128" height="128">
+  <img src="pages/app/assets/logo-256.png" alt="Jadecord" width="128" height="128" style="border-radius: 16px;">
 </p>
+
 
 <h1 align="center">Jadecord</h1>
 
