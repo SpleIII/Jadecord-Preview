@@ -47,8 +47,8 @@ JavaScript-файле `js/data.js`. Достаточно открыть стра
 
 | Часть проекта | Папка | Что это | Живая версия |
 |:--|:--|:--|:--|
-| 🌐 **Главная страница** | `pages/main/` | лендинг: hero, возможности, сообщества, CTA, FAQ | [открыть](https://arthuraleksandrovitch.github.io/discord-project/) |
-| 💻 **Веб-клиент** | `pages/app/` | интерфейс мессенджера с каналами, чатом и Rich Presence | [открыть](https://arthuraleksandrovitch.github.io/discord-project/pages/main/) |
+| 🌐 **Главная страница** | `pages/main/` | лендинг: hero, возможности, сообщества, CTA, FAQ | [открыть](https://spleiii.github.io/Jadecord-Preview/pages/main/) |
+| 💻 **Веб-клиент** | `pages/app/` | интерфейс мессенджера с каналами, чатом и Rich Presence | [открыть](https://spleiii.github.io/Jadecord-Preview/pages/app/) |
 
 ---
 
@@ -76,15 +76,18 @@ JavaScript-файле `js/data.js`. Достаточно открыть стра
 
 Проект опубликован на **GitHub Pages** — обе страницы открываются в браузере без установки:
 
-> ### 🌐 [Главная страница](https://arthuraleksandrovitch.github.io/discord-project/)
-> ### 💻 [Веб-клиент](https://arthuraleksandrovitch.github.io/discord-project/pages/main/)
+> ### 🌐 [Главная страница](https://spleiii.github.io/Jadecord-Preview/pages/main/)
+> ### 💻 [Веб-клиент](https://spleiii.github.io/Jadecord-Preview/pages/app/)
 
 | Страница | Адрес | Папка в репозитории | Что посмотреть |
 |:--|:--|:--|:--|
-| Лендинг | `https://arthuraleksandrovitch.github.io/discord-project/` | `pages/main/` | hero, карточки возможностей, FAQ, адаптив |
-| Клиент | `https://arthuraleksandrovitch.github.io/discord-project/pages/main/` | `pages/app/` | каналы, чат, участники, темы, Rich Presence |
+| Лендинг | `https://spleiii.github.io/Jadecord-Preview/pages/main/` | `pages/main/` | hero, карточки возможностей, FAQ, адаптив |
+| Клиент | `https://spleiii.github.io/Jadecord-Preview/pages/app/` | `pages/app/` | каналы, чат, участники, темы, Rich Presence |
 
 > 💡 **Совет:** откройте клиент и нажмите `Escape` — закроются все открытые меню и карточки.
+>
+> 📦 Сайт собирается из ветки `devbuild`: корень `https://spleiii.github.io/Jadecord-Preview/`
+> перенаправляет на главную страницу.
 
 ---
 
@@ -242,6 +245,7 @@ JavaScript-файле `js/data.js`. Достаточно открыть стра
 ```
 Jadecord-Preview/
 ├── README.md                  # документация проекта (вы её читаете)
+├── index.html                 # редирект с корня сайта на pages/main/
 ├── docs/                      # скриншоты для README
 └── pages/
     ├── main/                  # 🌐 главная страница (лендинг)
@@ -456,8 +460,8 @@ JavaScript-объекты, ничего компилировать не нужн
 </p>
 
 <p align="center">
-  <a href="https://arthuraleksandrovitch.github.io/discord-project/">🌐 Главная страница</a> ·
-  <a href="https://arthuraleksandrovitch.github.io/discord-project/pages/main/">💻 Веб-клиент</a> ·
+  <a href="https://spleiii.github.io/Jadecord-Preview/pages/main/">🌐 Главная страница</a> ·
+  <a href="https://spleiii.github.io/Jadecord-Preview/pages/app/">💻 Веб-клиент</a> ·
   <a href="https://github.com/SpleIII/Jadecord-Preview">📦 Репозиторий</a>
 </p>
 
