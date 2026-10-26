@@ -24,7 +24,7 @@
 </p>
 
 <p align="center">
-  <img src="docs/landing.jpg" alt="Главная страница Jadecord" width="100%">
+  <img src="https://raw.githubusercontent.com/SpleIII/Jadecord-Preview/refs/heads/devbuild/docs/landing.jpg" alt="Главная страница Jadecord" width="100%">
 </p>
 
 ---
@@ -134,6 +134,10 @@ JavaScript-файле `js/data.js`. Достаточно открыть стра
 
 Хедер «липкий»: остаётся сверху при прокрутке, подложка полупрозрачная с `backdrop-filter: blur(18px)`.
 На мобильных иллюстрация подменяется облегчённым `webp`, а сетка карточек перестраивается в одну колонку.
+
+<p align="center">
+  <img src="docs/main-features.jpg" alt="Блок «Основные возможности» на главной странице" width="100%">
+</p>
 
 | Параметр | Значение |
 |:--|:--|
