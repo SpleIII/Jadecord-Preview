@@ -38,13 +38,19 @@
       "'": '&#39;',
     })[ch]);
 
+  // Маркеры для вырезанных блоков кода. Оборачиваем индекс в управляющие
+  // символы, чтобы обычные цифры из сообщения (например «123») нельзя было
+  // спутать с плейсхолдером.
+  const BLOCK_START = '\u0000';
+  const BLOCK_END = '\u0001';
+
   const renderText = (raw) => {
     const blocks = [];
 
     // Блоки кода вырезаем заранее, чтобы не трогать их содержимое.
-    const stash = raw.replace(/```([\s\S]*?)```/g, (_, code) => {
+    const stash = String(raw).replace(/```([\s\S]*?)```/g, (_, code) => {
       blocks.push(`<span class="pre">${escapeHtml(code.replace(/^\n|\n$/g, ''))}</span>`);
-      return `${blocks.length - 1}`;
+      return `${BLOCK_START}${blocks.length - 1}${BLOCK_END}`;
     });
 
     let html = escapeHtml(stash);
@@ -55,7 +61,9 @@
     html = html.replace(/(^|\s)(@[A-Za-z0-9_]+)/g, '$1<span class="mention">$2</span>');
     html = html.replace(/(^|\s)(https?:\/\/[^\s<]+)/g, '$1<a class="link" href="$2" target="_blank" rel="noreferrer">$2</a>');
 
-    html = html.replace(/(\d+)/g, (_, index) => blocks[Number(index)]);
+    // Возвращаем блоки кода на место. В отличие от голых цифр, маркеры
+    // с управляющими символами не пересекаются с текстом сообщения.
+    html = html.replace(/\u0000(\d+)\u0001/g, (_, index) => blocks[Number(index)] ?? '');
 
     return html;
   };
