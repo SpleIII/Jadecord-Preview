@@ -271,6 +271,24 @@ a {
   text-decoration: none;
 }
 
+/* ---------- SVG-иконки ----------
+   Один спрайт в index.html, в разметке — ссылки на символы.
+   Размер по умолчанию 20px, у каждого места свой. */
+.icon-sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.icon {
+  display: block;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
 ul {
   margin: 0;
   padding: 0;
@@ -1713,4 +1731,104 @@ ul {
     width: 40px;
     height: 40px;
   }
+}
+
+/* =========================================================
+   12. Размеры SVG-иконок по месту
+   ========================================================= */
+
+.sidebar__chevron {
+  display: flex;
+}
+
+.sidebar__chevron .icon {
+  width: 18px;
+  height: 18px;
+}
+
+.guild--add .icon {
+  width: 22px;
+  height: 22px;
+}
+
+.channel__hash .icon {
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+}
+
+.chat__icon .icon {
+  width: 24px;
+  height: 24px;
+}
+
+.chat__actions button {
+  display: grid;
+  place-items: center;
+}
+
+.chat__actions .icon {
+  width: 20px;
+  height: 20px;
+}
+
+.composer__btn .icon {
+  width: 22px;
+  height: 22px;
+}
+
+.message__actions .icon {
+  width: 17px;
+  height: 17px;
+}
+
+.project-card__icon .icon {
+  width: 22px;
+  height: 22px;
+}
+
+.popout__link-icon {
+  display: flex;
+  color: var(--text-muted);
+}
+
+.popout__link-icon .icon {
+  width: 16px;
+  height: 16px;
+}
+
+.rpc__btn .icon {
+  width: 15px;
+  height: 15px;
+}
+
+.rpc__option-icon {
+  display: flex;
+  justify-content: center;
+}
+
+.rpc__option-icon .icon {
+  width: 19px;
+  height: 19px;
+}
+
+.server-menu__item .icon {
+  width: 18px;
+  height: 18px;
+  color: var(--interactive-muted);
+}
+
+.server-menu__item--danger .icon {
+  color: inherit;
+}
+
+.server-menu__group-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.server-menu__group-title .icon {
+  width: 14px;
+  height: 14px;
 }
