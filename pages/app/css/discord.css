@@ -903,6 +903,66 @@ ul {
   white-space: pre-wrap;
 }
 
+/* Вложение — ссылка на локальный файл. */
+.message__attachments {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  margin-top: var(--space-xs);
+}
+
+.attachment {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  max-width: 430px;
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--background-mod-muted);
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+a.attachment:hover {
+  border-color: var(--brand);
+  background: var(--background-mod-normal);
+}
+
+.attachment__icon {
+  display: flex;
+  color: var(--text-link);
+}
+
+.attachment__body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.attachment__name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--text-link);
+  font-size: 15px;
+  font-weight: var(--font-weight-medium);
+}
+
+.attachment__size {
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.attachment.is-missing {
+  opacity: 0.6;
+}
+
+.attachment.is-missing .attachment__icon,
+.attachment.is-missing .attachment__name {
+  color: var(--text-muted);
+}
+
 .message__reactions {
   display: flex;
   flex-wrap: wrap;
@@ -1780,6 +1840,11 @@ ul {
 .message__actions .icon {
   width: 17px;
   height: 17px;
+}
+
+.attachment__icon .icon {
+  width: 24px;
+  height: 24px;
 }
 
 .project-card__icon .icon {

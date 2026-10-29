@@ -25,6 +25,18 @@
     extra: JSON.parse(localStorage.getItem(STORAGE.messages) || '{}'),
   };
 
+  // blob:-ссылки на файлы живут только до перезагрузки — у таких вложений
+  // ссылку убираем, карточка остаётся, но помечается как недоступная.
+  Object.values(state.extra).forEach((list) => {
+    (list || []).forEach((message) => {
+      (message.attachments || []).forEach((file) => {
+        if (file.session) {
+          delete file.href;
+        }
+      });
+    });
+  });
+
   /* ---------------------------------------------------------
      Разбор текста: **жирный**, `код`, ссылки, @упоминания
      --------------------------------------------------------- */
@@ -154,6 +166,61 @@
   };
 
   /* ---------------------------------------------------------
+     Вложения: файл никуда не загружается, в сообщении остаётся
+     ссылка на локальный файл.
+     --------------------------------------------------------- */
+
+  const FILE_LIMIT = 5;
+  const INLINE_LIMIT = 1.4 * 1024 * 1024; // до ~1.4 МБ ссылка переживает перезагрузку
+
+  const formatSize = (bytes) => {
+    if (!Number.isFinite(bytes) || bytes <= 0) {
+      return '0 Б';
+    }
+    const units = ['Б', 'КБ', 'МБ', 'ГБ'];
+    const power = Math.min(Math.floor(Math.log(bytes) / Math.log(1024)), units.length - 1);
+    const value = bytes / 1024 ** power;
+    return `${value >= 10 || power === 0 ? Math.round(value) : value.toFixed(1)} ${units[power]}`;
+  };
+
+  const readAsDataUrl = (file) =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.addEventListener('load', () => resolve(String(reader.result)));
+      reader.addEventListener('error', () => reject(reader.error || new Error('Не удалось прочитать файл')));
+      reader.readAsDataURL(file);
+    });
+
+  // Небольшие файлы храним как data:-ссылку — она работает и после
+  // перезагрузки. Крупные — как blob:-ссылку, пока открыта вкладка.
+  const describeFile = async (file) => {
+    const meta = {
+      name: file.name || 'файл',
+      size: file.size,
+      type: file.type || 'application/octet-stream',
+    };
+
+    if (file.size <= INLINE_LIMIT) {
+      try {
+        return { ...meta, href: await readAsDataUrl(file) };
+      } catch (error) {
+        /* ниже — обычная blob-ссылка */
+      }
+    }
+
+    return { ...meta, href: URL.createObjectURL(file), session: true };
+  };
+
+  const persistMessages = () => {
+    try {
+      localStorage.setItem(STORAGE.messages, JSON.stringify(state.extra));
+      return true;
+    } catch (error) {
+      return false;
+    }
+  };
+
+  /* ---------------------------------------------------------
      Сообщения
      --------------------------------------------------------- */
 
@@ -205,6 +272,29 @@
           )
           .join('');
 
+        const attachments = (message.attachments || [])
+          .map((file) => {
+            const ext = (file.name.split('.').pop() || '').toUpperCase();
+            const meta = ext && ext.length <= 5 ? `${ext} · ${formatSize(file.size)}` : formatSize(file.size);
+            const body = `
+              <span class="attachment__icon">${icon('file')}</span>
+              <span class="attachment__body">
+                <span class="attachment__name">${escapeHtml(file.name)}</span>
+                <span class="attachment__size">${meta}</span>
+              </span>`;
+
+            if (!file.href) {
+              return `<div class="attachment is-missing" title="Файл из прошлой сессии — ссылка больше недоступна">${body}</div>`;
+            }
+
+            const open = file.href.startsWith('blob:')
+              ? 'target="_blank" rel="noreferrer"'
+              : `download="${escapeHtml(file.name)}"`;
+
+            return `<a class="attachment" href="${escapeHtml(file.href)}" ${open} title="Открыть локальный файл">${body}</a>`;
+          })
+          .join('');
+
         const head = grouped
           ? ''
           : `<div class="message__head">
@@ -222,7 +312,8 @@
             ${avatar}
             <div class="message__body">
               ${head}
-              <div class="message__text">${renderText(message.text)}</div>
+              ${message.text ? `<div class="message__text">${renderText(message.text)}</div>` : ''}
+              ${attachments ? `<div class="message__attachments">${attachments}</div>` : ''}
               ${cards}
               ${links}
               ${reactions ? `<div class="message__reactions">${reactions}</div>` : ''}
@@ -315,10 +406,55 @@
       time: new Date().toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' }),
     });
 
-    localStorage.setItem(STORAGE.messages, JSON.stringify(state.extra));
+    persistMessages();
 
     input.value = '';
     input.style.height = 'auto';
+    $('#send').classList.remove('is-ready');
+    renderMessages();
+  };
+
+  // Прикреплённые файлы отправляются одним сообщением вместе с текстом,
+  // который уже набран в поле ввода.
+  const sendFiles = async (fileList) => {
+    const files = Array.from(fileList || []).slice(0, FILE_LIMIT);
+    if (!files.length) {
+      return;
+    }
+
+    const channel = state.channel;
+    const input = $('#composer');
+    const text = input.value.trim();
+    const attachments = await Promise.all(files.map(describeFile));
+
+    const bucket = state.extra[channel] || (state.extra[channel] = []);
+    bucket.push({
+      author: ME,
+      text,
+      time: new Date().toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' }),
+      attachments,
+    });
+
+    // Если data:-ссылки не влезли в квоту localStorage, переводим их на
+    // blob: — сообщение останется, файл будет доступен до перезагрузки.
+    if (!persistMessages()) {
+      attachments.forEach((file, index) => {
+        if (file.href && file.href.startsWith('data:')) {
+          file.href = URL.createObjectURL(files[index]);
+          file.session = true;
+        }
+      });
+      persistMessages();
+    }
+
+    // Пока файлы читались, пользователь мог уйти в другой канал.
+    if (state.channel !== channel) {
+      return;
+    }
+
+    input.value = '';
+    input.style.height = 'auto';
+    $('#send').classList.remove('is-ready');
     renderMessages();
   };
 
@@ -597,6 +733,16 @@
       $('#send').classList.toggle('is-ready', el.value.trim().length > 0);
     });
 
+    // Вложения: кнопка «+» открывает выбор локального файла.
+    $('#attach').addEventListener('click', () => $('#file-input').click());
+
+    $('#file-input').addEventListener('change', (event) => {
+      // FileList живой: очистка value обнулила бы его, поэтому копируем.
+      const files = Array.from(event.target.files || []);
+      event.target.value = '';
+      sendFiles(files);
+    });
+
     // Реакции
     $('#messages').addEventListener('click', (event) => {
       const reaction = event.target.closest('[data-react]');
@@ -755,6 +901,7 @@
     'Совет: клик по панели внизу меняет ваш статус.',
     'Совет: поле «Найти канал» фильтрует список на лету.',
     'Совет: сообщения сохраняются в localStorage и переживают перезагрузку.',
+    'Совет: кнопка «+» прикрепляет локальный файл и вставляет на него ссылку.',
     'Совет: клик по иконке сервера открывает меню сервера.',
   ];
 
