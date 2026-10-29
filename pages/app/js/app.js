@@ -38,6 +38,10 @@
       "'": '&#39;',
     })[ch]);
 
+  // Иконки живут в SVG-спрайте (index.html) — здесь только ссылка на символ.
+  const icon = (name) =>
+    `<svg class="icon" aria-hidden="true" focusable="false"><use href="#i-${name}"></use></svg>`;
+
   // Маркеры для вырезанных блоков кода. Оборачиваем индекс в управляющие
   // символы, чтобы обычные цифры из сообщения (например «123») нельзя было
   // спутать с плейсхолдером.
@@ -77,7 +81,7 @@
       const divider = guild.add ? '<div class="guild guild--divider"></div>' : '';
 
       if (guild.add) {
-        return `${divider}<button class="guild guild--add" title="${guild.name}" aria-label="${guild.name}">${guild.icon}</button>`;
+        return `${divider}<button class="guild guild--add" title="${guild.name}" aria-label="${guild.name}">${icon('plus')}</button>`;
       }
 
       const classes = ['guild'];
@@ -117,7 +121,7 @@
         (channel) => `
         <li>
           <button class="channel" data-voice="${channel.id}">
-            <span class="channel__hash">🔊</span>
+            <span class="channel__hash">${icon('speaker')}</span>
             <span class="channel__name">${escapeHtml(channel.name)}</span>
             ${channel.members.length ? `<span class="channel__voice">${channel.members.length}</span>` : ''}
           </button>
@@ -183,7 +187,7 @@
           .map(
             (card) => `
             <a class="project-card" href="${card.href}" target="_blank" rel="noreferrer">
-              <span class="project-card__icon">${card.icon}</span>
+              <span class="project-card__icon">${icon(card.icon)}</span>
               <span class="project-card__body">
                 <span class="project-card__name">${escapeHtml(card.name)}</span>
                 <span class="project-card__desc">${escapeHtml(card.desc)}</span>
@@ -196,7 +200,7 @@
           .map(
             (link) => `
             <a class="popout__link" href="${link.href}" target="_blank" rel="noreferrer">
-              <span>${link.icon}</span><span>${escapeHtml(link.label)}</span>
+              <span class="popout__link-icon">${icon(link.icon)}</span><span>${escapeHtml(link.label)}</span>
             </a>`
           )
           .join('');
@@ -224,9 +228,9 @@
               ${reactions ? `<div class="message__reactions">${reactions}</div>` : ''}
             </div>
             <div class="message__actions">
-              <button title="Добавить реакцию" aria-label="Добавить реакцию">😊</button>
-              <button title="Ответить" aria-label="Ответить">↩</button>
-              <button title="Ещё" aria-label="Ещё">⋯</button>
+              <button title="Добавить реакцию" aria-label="Добавить реакцию">${icon('emoji')}</button>
+              <button title="Ответить" aria-label="Ответить">${icon('reply')}</button>
+              <button title="Ещё" aria-label="Ещё">${icon('more')}</button>
             </div>
           </div>`;
       })
@@ -286,7 +290,7 @@
 
     $('#chat-title').textContent = channel.name;
     $('#chat-topic').textContent = channel.topic || '';
-    $('#chat-icon').textContent = channel.type === 'voice' ? '🔊' : '#';
+    $('#chat-icon').innerHTML = channel.type === 'voice' ? icon('speaker') : '#';
     $('#composer').placeholder = `Написать сообщение в #${channel.name}`;
 
     renderSidebar($('#channel-search').value);
@@ -435,7 +439,7 @@
     $('#rpc-options').innerHTML = ACTIVITIES.map(
       (activity) => `
       <button class="rpc__option ${activity.id === state.activity ? 'is-active' : ''}" data-activity="${activity.id}">
-        <span class="rpc__option-icon">${activity.icon}</span>
+        <span class="rpc__option-icon">${icon(activity.icon)}</span>
         <span>${escapeHtml(activity.label)}<small>${escapeHtml(activity.detail)}</small></span>
       </button>`
     ).join('');
@@ -495,7 +499,7 @@
     $('#popout-meta').textContent = user.status === 'offline' ? 'Оффлайн' : user.status === 'dnd' ? 'Не беспокоить' : user.status === 'idle' ? 'Неактивен' : 'В сети';
     $('#popout-about').textContent = user.about;
     $('#popout-links').innerHTML = (user.links || [])
-      .map((link) => `<a class="popout__link" href="${link.href}" target="_blank" rel="noreferrer"><span>${link.icon}</span><span>${escapeHtml(link.label)}</span></a>`)
+      .map((link) => `<a class="popout__link" href="${link.href}" target="_blank" rel="noreferrer"><span class="popout__link-icon">${icon(link.icon)}</span><span>${escapeHtml(link.label)}</span></a>`)
       .join('');
 
     popout.classList.add('is-open');
@@ -528,13 +532,13 @@
 
     menu.dataset.guild = guildId;
     menu.innerHTML = `
-      <button class="server-menu__item"><span>🔗</span> Пригласить друзей</button>
-      <button class="server-menu__item"><span>⚙️</span> Настройки сервера</button>
+      <button class="server-menu__item">${icon('invite')} Пригласить друзей</button>
+      <button class="server-menu__item">${icon('settings')} Настройки сервера</button>
       <div class="server-menu__sep"></div>
-      <button class="server-menu__item"><span>🔔</span> Уведомления</button>
+      <button class="server-menu__item">${icon('bell')} Уведомления</button>
       <div class="server-menu__sep"></div>
       <div class="server-menu__group">
-        <span class="server-menu__group-title"><span>🎨</span> Тема</span>
+        <span class="server-menu__group-title">${icon('theme')} Тема</span>
         ${THEMES.map(
           (theme) => `
           <button class="server-menu__theme" data-menu-theme="${theme.id}">
@@ -544,7 +548,7 @@
         ).join('')}
       </div>
       <div class="server-menu__sep"></div>
-      <button class="server-menu__item server-menu__item--danger"><span>🚪</span> Покинуть сервер</button>`;
+      <button class="server-menu__item server-menu__item--danger">${icon('leave')} Покинуть сервер</button>`;
 
     updateThemeSwitch();
     menu.classList.add('is-open');

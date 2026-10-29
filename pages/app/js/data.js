@@ -16,9 +16,9 @@ const USERS = {
     color: '#5865F2',
     about: 'Разработчик. Собираю пайплайны, контейнеры и клиенты под Discord.',
     links: [
-      { icon: '📁', label: 'github.com/SpleIII', href: 'https://github.com/SpleIII' },
-      { icon: '📦', label: 'Zadanie', href: 'https://github.com/SpleIII/Zadanie' },
-      { icon: '🐳', label: 'Docker-Compose', href: 'https://github.com/SpleIII/Docker-Compose' },
+      { icon: 'github', label: 'github.com/SpleIII', href: 'https://github.com/SpleIII' },
+      { icon: 'graph', label: 'Zadanie', href: 'https://github.com/SpleIII/Zadanie' },
+      { icon: 'box', label: 'Docker-Compose', href: 'https://github.com/SpleIII/Docker-Compose' },
     ],
   },
 
@@ -35,7 +35,7 @@ const USERS = {
 
 const GUILDS = [
   { id: 'dev', name: 'SpleIII Development', icon: 'S', color: '#5865F2', active: true },
-  { id: 'add', name: 'Добавить сервер', icon: '＋', add: true },
+  { id: 'add', name: 'Добавить сервер', icon: 'plus', add: true },
 ];
 
 /* ---------- каналы ---------- */
@@ -88,19 +88,19 @@ const MESSAGES = {
       text: 'Основное, что успел:',
       cards: [
         {
-          icon: '⚙️',
+          icon: 'graph',
           name: 'Zadanie',
           desc: '10 учебных CI/CD пайплайнов в одном монорепозитории',
           href: 'https://github.com/SpleIII/Zadanie',
         },
         {
-          icon: '🐳',
+          icon: 'box',
           name: 'Docker-Compose',
           desc: '12 готовых compose-стеков и визуальный каталог',
           href: 'https://github.com/SpleIII/Docker-Compose',
         },
         {
-          icon: '🎮',
+          icon: 'gamepad',
           name: 'Discord',
           desc: 'Этот клиент — визитка в стиле Discord',
           href: 'https://github.com/SpleIII/Discord',
@@ -149,8 +149,8 @@ const MESSAGES = {
       time: '09:30',
       text: 'Писать можно сюда:',
       links: [
-        { icon: '📁', label: 'github.com/SpleIII', href: 'https://github.com/SpleIII' },
-        { icon: '📧', label: 'SpleIII@users.noreply.github.com', href: 'mailto:SpleIII@users.noreply.github.com' },
+        { icon: 'github', label: 'github.com/SpleIII', href: 'https://github.com/SpleIII' },
+        { icon: 'mail', label: 'SpleIII@users.noreply.github.com', href: 'mailto:SpleIII@users.noreply.github.com' },
       ],
     },
     {
@@ -164,9 +164,9 @@ const MESSAGES = {
 /* ---------- активности Rich Presence ---------- */
 
 const ACTIVITIES = [
-  { id: 'none', icon: '💤', label: 'Не играет', detail: 'Discord' },
-  { id: 'zadanie', icon: '⚙️', label: 'Zadanie', detail: 'Собирает пайплайны' },
-  { id: 'compose', icon: '🐳', label: 'Docker-Compose', detail: 'Поднимает стеки' },
+  { id: 'none', icon: 'moon', label: 'Не играет', detail: 'Discord' },
+  { id: 'zadanie', icon: 'graph', label: 'Zadanie', detail: 'Собирает пайплайны' },
+  { id: 'compose', icon: 'box', label: 'Docker-Compose', detail: 'Поднимает стеки' },
 ];
 
 /* ---------- темы ---------- */
