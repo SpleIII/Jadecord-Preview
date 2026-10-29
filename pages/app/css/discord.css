@@ -1555,6 +1555,56 @@ ul {
   background: var(--border-subtle);
 }
 
+.server-menu__group-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 6px var(--space-sm) 2px;
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.server-menu__theme {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  width: 100%;
+  padding: 5px var(--space-sm) 5px calc(var(--space-sm) + 4px);
+  border-radius: var(--radius-xs);
+  color: var(--text-normal);
+  font-size: 14px;
+  text-align: left;
+}
+
+.server-menu__theme:hover {
+  background: var(--background-mod-hover);
+}
+
+.server-menu__theme.is-active {
+  background: var(--background-mod-selected);
+  color: var(--text-strong);
+}
+
+.server-menu__swatch {
+  flex: 0 0 auto;
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--border-strong);
+  border-radius: 50%;
+}
+
+.server-menu__theme.is-active .server-menu__swatch {
+  border-color: var(--brand);
+}
+
+.server-menu__theme.is-active .server-menu__theme-label::after {
+  content: ' ✓';
+  color: var(--brand);
+}
+
 /* =========================================================
    10. Переключатель темы
    ========================================================= */
@@ -1572,9 +1622,8 @@ ul {
   font-weight: var(--font-weight-medium);
 }
 
-.theme-switch:hover {
-  background: var(--background-mod-hover);
-  color: var(--text-normal);
+.theme-switch__label {
+  white-space: nowrap;
 }
 
 .theme-switch__dots {
@@ -1582,15 +1631,29 @@ ul {
   gap: 3px;
 }
 
+/* Точка — самостоятельная кнопка: включает именно свою тему. */
 .theme-switch__dot {
-  width: 12px;
-  height: 12px;
+  width: 14px;
+  height: 14px;
+  padding: 0;
   border: 2px solid var(--border-strong);
   border-radius: 50%;
+  transition: transform 0.12s ease, border-color 0.12s ease;
+}
+
+.theme-switch__dot:hover {
+  transform: scale(1.15);
 }
 
 .theme-switch__dot.is-active {
   border-color: var(--brand);
+  box-shadow: 0 0 0 2px var(--brand-alpha, rgba(88, 101, 242, 0.35));
+}
+
+.theme-switch__dot:focus-visible,
+.server-menu__theme:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
 }
 
 /* =========================================================

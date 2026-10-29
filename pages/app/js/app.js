@@ -339,20 +339,21 @@
     updateThemeSwitch();
   };
 
-  const nextTheme = () => {
-    const index = THEME_IDS.indexOf(state.theme);
-    applyTheme(THEME_IDS[(index + 1) % THEME_IDS.length]);
-  };
-
   const updateThemeSwitch = () => {
     $$('.theme-switch__dot').forEach((dot) => {
-      dot.classList.toggle('is-active', dot.dataset.theme === state.theme);
+      const active = dot.dataset.theme === state.theme;
+      dot.classList.toggle('is-active', active);
+      dot.setAttribute('aria-pressed', String(active));
+    });
+
+    $$('.server-menu__theme').forEach((item) => {
+      item.classList.toggle('is-active', item.dataset.menuTheme === state.theme);
     });
 
     const button = $('.theme-switch');
     const theme = THEMES.find((item) => item.id === state.theme);
     if (button && theme) {
-      button.title = `Смена темы · сейчас: ${theme.label}`;
+      button.title = `Тема · сейчас: ${theme.label}`;
     }
   };
 
@@ -365,18 +366,27 @@
       return;
     }
 
-    const block = document.createElement('button');
-    block.type = 'button';
+    // Каждая точка — отдельная кнопка: нажатие включает именно эту тему,
+    // а не следующую по кругу.
+    const block = document.createElement('div');
     block.className = 'theme-switch';
     block.innerHTML = `
       <span class="theme-switch__dots">
         ${THEMES.map(
-          (theme) => `<span class="theme-switch__dot" data-theme="${theme.id}" style="background:${theme.dot}" title="${theme.label}"></span>`
+          (theme) =>
+            `<button type="button" class="theme-switch__dot" data-theme="${theme.id}"
+              style="background:${theme.dot}" title="${theme.label}"
+              aria-label="Тема «${theme.label}»" aria-pressed="false"></button>`
         ).join('')}
       </span>
-      <span>Смена темы</span>`;
+      <span class="theme-switch__label">Тема</span>`;
 
-    block.addEventListener('click', nextTheme);
+    block.addEventListener('click', (event) => {
+      const dot = event.target.closest('.theme-switch__dot');
+      if (dot && dot.dataset.theme) {
+        applyTheme(dot.dataset.theme);
+      }
+    });
 
     slot.appendChild(block);
     updateThemeSwitch();
@@ -522,10 +532,21 @@
       <button class="server-menu__item"><span>⚙️</span> Настройки сервера</button>
       <div class="server-menu__sep"></div>
       <button class="server-menu__item"><span>🔔</span> Уведомления</button>
-      <button class="server-menu__item" data-menu-action="theme"><span>🎨</span> Смена темы</button>
+      <div class="server-menu__sep"></div>
+      <div class="server-menu__group">
+        <span class="server-menu__group-title"><span>🎨</span> Тема</span>
+        ${THEMES.map(
+          (theme) => `
+          <button class="server-menu__theme" data-menu-theme="${theme.id}">
+            <span class="server-menu__swatch" style="background:${theme.dot}"></span>
+            <span class="server-menu__theme-label">${theme.label}</span>
+          </button>`
+        ).join('')}
+      </div>
       <div class="server-menu__sep"></div>
       <button class="server-menu__item server-menu__item--danger"><span>🚪</span> Покинуть сервер</button>`;
 
+    updateThemeSwitch();
     menu.classList.add('is-open');
 
     const rect = anchor.getBoundingClientRect();
@@ -679,9 +700,9 @@
     });
 
     $('#server-menu').addEventListener('click', (event) => {
-      const action = event.target.closest('[data-menu-action]');
-      if (action && action.dataset.menuAction === 'theme') {
-        nextTheme();
+      const themeItem = event.target.closest('[data-menu-theme]');
+      if (themeItem) {
+        applyTheme(themeItem.dataset.menuTheme);
       }
       closeServerMenu();
     });
@@ -725,7 +746,7 @@
     'Совет: нажмите Escape, чтобы закрыть открытое меню или карточку.',
     'Совет: Shift + Enter переносит строку, а Enter отправляет сообщение.',
     'Совет: наведите курсор на участника — откроется его карточка.',
-    'Совет: кнопка «Смена темы» под каналами переключает три оформления.',
+    'Совет: точки под каналами включают конкретную тему — тёмную, тёмнее или светлую.',
     'Совет: шестерёнка на панели внизу выбирает активность Rich Presence.',
     'Совет: клик по панели внизу меняет ваш статус.',
     'Совет: поле «Найти канал» фильтрует список на лету.',
