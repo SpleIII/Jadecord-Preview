@@ -526,3 +526,28 @@ details p {
   position: relative;
   z-index: 2;
 }
+.hero-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 22px;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+}
+
+.hero-meta span:nth-child(odd) {
+  transition: color 0.2s ease;
+}
+
+.hero-meta span:nth-child(odd):hover {
+  color: #ffffff;
+}
+
+@media (max-width: 640px) {
+  .hero-meta {
+    flex-wrap: wrap;
+    gap: 7px;
+    font-size: 12px;
+  }
+}
