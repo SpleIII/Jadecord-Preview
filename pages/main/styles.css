@@ -526,3 +526,86 @@ details p {
   position: relative;
   z-index: 2;
 }
+.hero-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 22px;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+}
+
+.hero-meta span:nth-child(odd) {
+  transition: color 0.2s ease;
+}
+
+.hero-meta span:nth-child(odd):hover {
+  color: #ffffff;
+}
+
+@media (max-width: 640px) {
+  .hero-meta {
+    flex-wrap: wrap;
+    gap: 7px;
+    font-size: 12px;
+  }
+}
+/* Feature cards hover effects */
+.feature-card {
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(130, 110, 255, 0.45);
+  box-shadow: 0 14px 35px rgba(91, 65, 220, 0.16);
+}
+
+.feature-icon {
+  display: inline-flex;
+  transition: transform 0.3s ease;
+}
+
+.feature-card:hover .feature-icon {
+  transform: scale(1.15) rotate(-5deg);
+}
+/* FAQ improvements */
+.faq-list details {
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.faq-list details[open] {
+  background: rgba(130, 110, 255, 0.08);
+  border-color: rgba(130, 110, 255, 0.4);
+}
+
+.faq-list summary {
+  cursor: pointer;
+  transition: color 0.25s ease;
+}
+
+.faq-list summary:hover {
+  color: #a99aff;
+}
+
+.faq-list details p {
+  animation: faq-appear 0.3s ease;
+}
+
+@keyframes faq-appear {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
