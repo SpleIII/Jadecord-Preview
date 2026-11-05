@@ -202,6 +202,41 @@ JavaScript-файле `js/data.js`. Достаточно открыть стра
 | `compose-client-activity` | выбранная активность Rich Presence |
 | `compose-client-status` | статус пользователя |
 
+Схема связей между файлами и состоянием:
+
+```mermaid
+flowchart TB
+    subgraph UI["Интерфейс — pages/app/index.html + css/discord.css"]
+        direction LR
+        CH["Каналы<br/>и поиск"]
+        CHAT["Чат, ввод<br/>и вложения"]
+        MEMBERS["Участники<br/>и профили"]
+        RPC["Rich Presence<br/>и темы"]
+    end
+
+    subgraph APP["Логика — pages/app/js/app.js"]
+        direction LR
+        EVENTS["initEvents<br/>обработчики"]
+        STATE["state<br/>текущее состояние"]
+        RENDER["render*<br/>сборка HTML"]
+    end
+
+    subgraph DATA["Контент — pages/app/js/data.js"]
+        direction LR
+        CONTENT["Серверы, каналы,<br/>участники, сообщения"]
+        CONFIG["Темы<br/>и активности"]
+    end
+
+    STORAGE[("localStorage")]
+
+    UI -->|"клик · ввод · файл"| EVENTS
+    EVENTS --> STATE
+    STATE <-->|"сообщения · тема · канал"| STORAGE
+    STATE --> RENDER
+    RENDER -->|"innerHTML"| UI
+    DATA -->|"данные при старте"| RENDER
+```
+
 ---
 
 ## 🎨 Темы оформления
